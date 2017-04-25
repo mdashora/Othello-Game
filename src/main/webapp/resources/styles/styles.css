@@ -1,0 +1,105 @@
+
+root { 
+    display: block;
+}
+
+.datatable
+{
+    width: 200pt;
+}
+
+.breadcrumb
+{
+    width: 630pt;
+}
+
+.boardstats
+{
+    font-size: small;
+    font-family: fantasy;
+    position:absolute;
+    left:520px; 
+    top:90px;
+}
+
+.jsfboard input
+{
+    margin: 0pt;
+    height: 50px;
+    width: 50px;
+    padding: 0;
+}
+
+.jsfboard table
+{
+    border-spacing: 0px;
+    border-color: black;
+    border-style: double;
+    padding: 0px;
+}
+
+.jsfboard tr
+{
+    margin: 0pt; 
+    padding: 0px;
+    border-style: solid;
+    border-color: black;
+}
+
+.jsfboard td
+{
+    margin: 0pt; 
+    padding: 0px;
+    border-style: solid;
+    border-color: black;
+    width: 50px;
+    height: 50px;
+}
+
+.NOT_SELECTABLE
+{
+    background-color: green;
+    color: green;
+}
+
+.SELECTABLE_WHITE
+{
+    background-color: green;
+    color: green;
+    border-style: solid;
+    border-color: darkgreen;
+}
+
+.SELECTABLE_BLACK
+{
+    background-color: green;
+    color: green;
+    border-style: solid;
+    border-color: darkgreen;
+}
+
+.SELECTABLE_BLACK:hover
+{
+    background-color: #333333;
+    color: #333333;
+}
+
+.SELECTABLE_WHITE:hover
+{
+    background-color: #cccccc;
+    color: #cccccc;
+}
+
+.BLACK
+{
+    background-color: black;
+    color: black;
+}
+
+.WHITE
+{
+    background-color: white;
+    color: white;
+}
+
+

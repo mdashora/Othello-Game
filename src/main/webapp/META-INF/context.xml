@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/othelloGame">
+  <!-- https://tomcat.apache.org/tomcat-7.0-doc/jndi-datasource-examples-howto.html -->
+  <!-- has to be started manually in Netbeans, DB is under resources/derbydb,
+        should be defined in server.xml but wokrs here
+    -->
+  <Resource auth="Container" driverClassName="org.apache.derby.jdbc.ClientDriver" maxActive="50" maxIdle="50" name="jdbc/othellodb" password="othello" type="javax.sql.DataSource" url="jdbc:derby://localhost:1527/othello" username="othello"/>
+
+  <Realm className="org.apache.catalina.realm.DataSourceRealm" localDataSource="true" dataSourceName="jdbc/othellodb" roleNameCol="userrole" userCredCol="pwd" userNameCol="name" userRoleTable="roles" userTable="users"/>
+</Context>

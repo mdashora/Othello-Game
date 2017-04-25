@@ -1,0 +1,15 @@
+<facelet-taglib version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/
+        web-facelettaglibrary_2_0.xsd">
+  <namespace>http://com.isa/reversi</namespace>
+  <tag>
+      <tag-name>gameboard</tag-name>
+      <component>
+          <component-type>com.isa.othello.faces.board.GameBoard</component-type>
+          <renderer-type>com.isa.othello.faces.board.GameBoard</renderer-type>
+      </component>
+  </tag>
+</facelet-taglib>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Login</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <h:outputLabel value="Username "/>
+            <p:inputText id="username" label="UserName: " validatorMessage="UserName is required" required="true" title="Name:" value="#{user.name}" />
+            <br/>
+            <br/>
+            <h:outputLabel value="Password   "/>
+            <p:password  id="password" label="Password: " validatorMessage="Password is required" minLength="8" required="true" feedback="false" value="#{user.password}" >
+                
+            </p:password>
+            
+            <br/>
+            <p:commandButton id ="login" value="Login" action="#{user.login()}" ajax="false" />
+            <br/>
+            <h:message for="login" style="color:red" />
+            <h:messages />
+        </h:form>
+    </h:body>
+</html>
+

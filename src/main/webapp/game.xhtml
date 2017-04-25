@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:r="http://com.isa/reversi"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Game: #{game.id}</title>
+        <h:outputStylesheet name="styles.css" library="styles"/>
+
+    </h:head>
+    <h:body>
+        <p:breadCrumb styleClass="breadcrumb">  
+            <p:menuitem value="Home" url="index.xhtml" />
+            <p:menuitem value="Game" url="#" />   
+        </p:breadCrumb> 
+         <f:metadata>
+           <f:viewParam id="gameidparam" name="gameid" value="#{game.id}" required="true" requiredMessage="GameId is missing"/>
+        </f:metadata>
+        <p:panel id ="gameboard" styleClass="breadcrumb">
+            <div class="boardstats" >
+                <p:panel id="stats">
+                 <h:outputText value="Score: "/><br/>
+                 <h:outputText value="White: #{game.board.whiteStones}"/><br/>
+                 <h:outputText value="Black: #{game.board.blackStones}"/><br/>
+                 <h:outputText value="Black Player Turn: #{game.board.nextPlayerBlack}"/><br/>
+                 <h:panelGrid id="players">
+                     <h:outputText value="Black Player: #{game.blackPlayerName}" />
+                     <h:form rendered="#{user.loggedIn and user.canPlay and not game.hasBlackPlayer}">
+                         <p:commandButton value="Play Black" action="#{game.playBlack()}"
+                                          update="gameidparam, stats, board"/>
+                     </h:form>
+                     <h:form >
+                     <p:commandButton value="Win/Loss Stats" action="#{game.statBlack()}"/>
+                     <h:outputText rendered="#{game.statValueBlack}" value="Games Won: #{game.gamesWonBlack}, Lost: #{game.gamesLostBlack}" />
+                     </h:form>
+                    
+                     <br/>
+                     <h:outputText value="White Player: #{game.whitePlayerName}" />   
+                     <h:form rendered="#{user.loggedIn and user.canPlay and not game.hasWhitePlayer}">
+                         <p:commandButton value="Play White" action="#{game.playWhite()}"
+                                          update="gameidparam, stats, board"/>
+                         
+                     </h:form>
+                     <h:form>
+                     <p:commandButton value="Win/Loss Stats" action="#{game.statWhite()}"/>
+                     <h:outputText rendered="#{game.statValueWhite}" value="Games Won: #{game.gamesWonWhite}, Lost: #{game.gamesLostWhite}" />
+                     </h:form>
+                     
+                     <br/>
+                 </h:panelGrid>
+                 
+                 <h:form styleClass="datatable">
+                     <h:outputText value="Game Previous Moves:" /> 
+                     <p:dataTable var="move" 
+                                  value="#{game.board.moves}" rowIndexVar="rowvar" 
+                                  liveScroll="false" scrollable="true" height="250" >
+                         <p:column style="width:50pt;"><h:outputText value="#{rowvar + 1}. #{move}"/></p:column>
+                     </p:dataTable>
+                 </h:form>
+                </p:panel>
+            </div>
+            <div class="jsfboard" > 
+                <p:panel id="board">
+                    <h:outputText value="GameId: #{game.id}"/><br/>
+                    <h:form id="gameform" prependId="false" >
+                        <h:inputHidden value="#{game.id}" id="gameid"/>
+                        <table>
+                            <ui:repeat value="#{gameBoardDimensions.rows}" var="rowNum" >
+                                <tr>
+                                   <ui:repeat value="#{gameBoardDimensions.columns}" var="columnNum" >
+                                       <td> <!--style="#{game.getState(rowNum, columnNum)}"-->
+                                       <h:commandButton      
+                                            id="gamecell"
+                                             styleClass="#{game.getState(rowNum, columnNum)}" 
+                                             disabled="#{game.isFieldDisabled(rowNum, columNum)}"
+                                             action="#{game.move(rowNum, columnNum)}"
+                                             immediate="true" 
+                                             >
+                                       </h:commandButton>
+                                       </td>
+                                    </ui:repeat> 
+                                </tr>
+                            </ui:repeat>
+                        </table> 
+                    </h:form>
+                </p:panel>
+            </div>
+            <div>
+                <h:outputText value="# Winner: #{game.board.winner}" />
+            </div>
+        </p:panel>
+                             
+        <h:form><p:poll interval="1" update="gameidparam, stats, board" ><f:param name="gameid" value="#{game.id}"/></p:poll></h:form>
+        <h:messages />
+        
+    </h:body>
+</html>
+

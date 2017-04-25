@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Create Account</title>
+    </h:head>
+    <h:body>
+        <h:form id="form">
+            <h:outputLabel value="Username "/>
+            <p:inputText id="username" label="UserName: " title="Name:" required="true" value="#{createUser.name}" validatorMessage="Invalid Username Pattern" validator="othello.user.validator" >
+            
+                <f:validateRegex pattern="([A-Za-z0-9_-]{3,16})" id="Pattern1"/>
+            </p:inputText>
+            <h:outputText value=" (Username may only have characters and symbols in the list A-Z, a-z, 0-9, underscore, hyphen)"/>
+            <br/>
+            <h:outputLabel value="Password   "/>
+            <p:password  id="password" label="Password: " minLength="8" feedback="true" validatorMessage="Invalid Password Pattern" required="true" value="#{createUser.password}" >
+               
+                <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{8,20})" id="Pattern" />
+            </p:password>
+            <h:outputText value="  (Password should contain a digit, an uppercase, a lowercase letter and any of the special characters(@#$%). Minimum length:8)"/>
+            <br/>
+            <p:commandButton id ="create" value="Create Player" action="#{createUser.create()}" ajax="false" />
+            <br/>
+            <h:message for="create" style="color:red" />
+            <h:messages />
+        </h:form>
+    </h:body>
+</html>
+
