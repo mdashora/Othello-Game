@@ -1,8 +1,15 @@
+About:
+A multi-player board game Othello (Reversi) based on client-server architecture. The game can be can be securely played across a network between 50 simultaneously online players with the complete audit trail of the game. Game is secured using techniques such as Multi-salted password hashing, encrypted channel (SSL), regex for input validation, SQL injection etc. 
+
+Technologies used - Java, JSF, MySQL, Apache Tomcat, NetBeans IDE. 
+
+Execution Steps:
+
 Follow the below instructions to run project.
 
 1. Open the project in NetBeans 7.1 or higher.
 2. Install Apache Tomcat 7.0.69 or higher in NetBeans.
-3. Create Java Derby DB named othello with username/password othello using Netbeans javadb-Services. Place below configuration in Tomcat’s Server.Xml and start the java DB
+3. Create Java Derby DB named othello with username/password othello using Netbeans javadb-Services. Place below configuration in Tomcatâ€™s Server.Xml and start the java DB
 
         <Resource name="jdbc/othellodb" auth="Container"
           type="javax.sql.DataSource" username="othello" password="othello"
